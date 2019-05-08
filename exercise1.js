@@ -1,26 +1,62 @@
-//GOAL: get the data in the array (below) to look like: year: "2016",
-   // make: "Porsche",
-   // model: "911 R",
-   // color: "white"
-
+//GOAL:
+// {
+//    name: "jared",
+//    age: "old",
+//    food: ["bacon", "pizza", "wings"],
+//    pet: ["dog", "fish"]
+// }
 
 
 let data = [
-    { key: "year", value: "2016" },
-    { key: "make", value: "Porsche" },
-    { key: "model", value: "911 R" },
-    { key: "color", value: "white" },
-    { key: "msrp", value: "$184,900" }
-]
+{
+   key: "name", value: "jared"
+},
+{
+   key: "age", value: "old"
+},
+{
+   key: "food", value: "bacon"
+},
+{
+   key: "food", value: "pizza"
+},
+{
+   key: "pet", value: "dog"
+},
+{
+   key: "food", value: "wings"
+},
+{
+   key: "pet", value: "fish"
+}]
 
-const doFilter = data.filter(keys => keys.key != "msrp")
+let doReduce = data.reduce(function(accumulator, currentValue) {
+   //console.log("accumulator: ", accumulator)
+   //console.log("currentValue: ", currentValue)
+   if (accumulator[currentValue.key] != undefined){
+      if ( Array.isArray(accumulator[currentValue.key])) {
+         accumulator[currentValue.key].push(currentValue.value)
+      }
+      else {
+         accumulator[currentValue.key] = [accumulator[currentValue.key], currentValue.value]
+      }
+   }
+   else
+   accumulator[currentValue.key] = currentValue.value
 
-console.log(doFilter)
+   return accumulator
+   
+}, {})
 
-//const doReduce = (accumulator, currentValue) => 
+// shorter way of doing reduce (but everything is in an array of its own)
 
-let doReduce = doFilter.reduce(function(currentIndex, currentValue) {
-   return currentValue.key, ":", currentValue.value
-})
+// let doReduce = doFilter.reduce(function(accumulator, currentValue) {
+//    let currKey = currentValue.key;
+//    if (!Array.isArray(accumulator[currKey])){
+//       accumulator[currKey] = [];
+//    }
+//    accumulator[currKey].push(currentValue.value);
+//    return accumulator;
+// }, {})
 
 console.log(doReduce)
