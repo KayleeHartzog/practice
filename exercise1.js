@@ -9,7 +9,7 @@
 
 let data = [
 {
-   key: "name", value: "jared"
+   key: "name", value: "jared", value2: "Ritz"
 },
 {
    key: "age", value: "old"
@@ -31,9 +31,9 @@ let data = [
 }]
 
 let doReduce = data.reduce(function(accumulator, currentValue) {
-   //console.log("accumulator: ", accumulator)
-   //console.log("currentValue: ", currentValue)
-   if (accumulator[currentValue.key] != undefined){
+   // console.log("accumulator: ", accumulator)
+   // console.log("currentValue: ", currentValue)
+   if (accumulator[currentValue['key']] != undefined){
       if ( Array.isArray(accumulator[currentValue.key])) {
          accumulator[currentValue.key].push(currentValue.value)
       }
